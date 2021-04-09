@@ -17,16 +17,23 @@ let endpoint = new awsx.apigateway.API("hello-world", {
     {
       path: "/{route+}",
       method: "POST",
-      // Functions can be created inline
+      // Functions can be imported from other modules
       eventHandler: handler
     },
     {
       path: "/{route+}",
       method: "DELETE",
       // Functions can be created inline
-      eventHandler: (event) => {
+      eventHandler: async (event) => {
         console.log('Inline delete event handler');
         console.log(event);
+
+        return {
+          statusCode: 200,
+          body: JSON.stringify({
+            affirmation: "Nice job, you've done it! :D"
+          })
+        }
       }
     },
   ],
