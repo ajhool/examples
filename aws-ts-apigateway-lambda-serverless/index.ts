@@ -18,10 +18,7 @@ let endpoint = new awsx.apigateway.API("hello-world", {
       path: "/{route+}",
       method: "POST",
       // Functions can be created inline
-      eventHandler: (event) => {
-        console.log('Inline event handler');
-        console.log(event);
-      }
+      eventHandler: handler
     },
     {
       path: "/{route+}",

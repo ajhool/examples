@@ -10,7 +10,6 @@ import * as aws from '@pulumi/aws';
  * @returns returns a confirmation to the message to the 
  */
 export const handler: aws.lambda.EventHandler<APIGatewayProxyEvent, APIGatewayProxyResult> = async (event) => {
-  const route = event.pathParameters!["route"];
   const body = event.body ? JSON.parse(event.body) : null;
 
   console.log('Received body: ', body);
@@ -18,7 +17,6 @@ export const handler: aws.lambda.EventHandler<APIGatewayProxyEvent, APIGatewayPr
   return {
     statusCode: 200,
     body: JSON.stringify({
-      route,
       affirmation: "Nice job, you've done it! :D",
       requestBodyEcho: body
     })
